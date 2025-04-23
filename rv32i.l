@@ -30,6 +30,7 @@ static int registerNameToNumber(const char *name) {
 
 [ \t]+                  ; /* skip whitespace */
 "#".*                 ; /* skip comments */
+[\r\n]+                ; /* skip newlines */
 
 0[xX][0-9A-Fa-f]+ {
     yylval.str = strdup(yytext);
@@ -85,10 +86,6 @@ static int registerNameToNumber(const char *name) {
 
 ")" {
     return RPAREN;
-}
-
-"\n" {
-    return NEWLINE;
 }
 
 . {
